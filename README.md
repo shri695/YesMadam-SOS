@@ -12,7 +12,9 @@
 
 **A consumer-facing emergency response web application that enables users to trigger real-time SOS alerts with automated SMS notifications.**
 
-[Features](#-features) · [Tech Stack](#-tech-stack) · [Architecture](#-architecture) · [Installation](#-installation) · [API Overview](#-api-overview)
+**Topics:** `react` `nodejs` `mongodb` `jwt` `rest-api` `twilio` `fullstack`
+
+[Features](#-features) · [Tech Stack](#-tech-stack) · [Quick Start](#-quick-start) · [Screenshots](#-screenshots) · [API Overview](#-api-overview)
 
 </div>
 
@@ -75,50 +77,63 @@ The project demonstrates end-to-end ownership: responsive **React frontend**, **
 
 ---
 
-## 🚀 Installation
+## 🚀 Quick Start
 
 ### Prerequisites
 - Node.js 18+
-- npm or yarn
-- MongoDB Atlas account (or local MongoDB)
-- Twilio account (for SMS alerts)
+- MongoDB (local or Atlas)
+- Twilio account (for SOS alerts)
 
-### 1. Clone the repository
+### 1. Clone & install
 
 ```bash
 git clone https://github.com/shri695/YesMadam-SOS.git
 cd YesMadam-SOS
 ```
 
-### 2. Backend setup
+### 2. Backend
 
 ```bash
 cd backend
 npm install
-
-# Create .env file with:
-# MONGODB_URI=your_mongodb_connection_string
-# JWT_SECRET=your_jwt_secret
-# TWILIO_ACCOUNT_SID=your_twilio_sid
-# TWILIO_AUTH_TOKEN=your_twilio_token
-# TWILIO_PHONE_NUMBER=your_twilio_number
-
-npm run dev
 ```
 
-### 3. Frontend setup
+Create `backend/.env` (copy from `.env.example`):
+
+```env
+TWILIO_SID=your_twilio_sid
+TWILIO_TOKEN=your_twilio_token
+TWILIO_PHONE=your_twilio_whatsapp_number
+MY_PHONE=your_whatsapp_number
+```
+
+```bash
+node index.js
+```
+
+Backend runs at **http://localhost:5000**
+
+### 3. Frontend
 
 ```bash
 cd frontend
 npm install
-
-# Create .env file with:
-# REACT_APP_API_URL=http://localhost:5000
-
 npm start
 ```
 
-Open **http://localhost:3000** in your browser.
+Frontend runs at **http://localhost:3000**
+
+---
+
+## 📸 Screenshots
+
+> Add 2–3 screenshots after running the app. Save in `screenshots/` folder.
+
+```markdown
+![Home Screen](./screenshots/home.png)
+![SOS Alert Panel](./screenshots/sos-panel.png)
+![Provider Dashboard](./screenshots/dashboard.png)
+```
 
 ---
 
