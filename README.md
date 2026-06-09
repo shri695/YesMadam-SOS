@@ -12,7 +12,7 @@
 
 **A consumer-facing emergency response web application that enables users to trigger real-time SOS alerts with automated SMS notifications.**
 
-**Topics:** `react` `nodejs` `mongodb` `jwt` `rest-api` `twilio` `fullstack`
+**Status:** Actively maintained · **Topics:** `react` `nodejs` `mongodb` `jwt` `rest-api` `twilio` `fullstack`
 
 [Features](#-features) · [Tech Stack](#-tech-stack) · [Quick Start](#-quick-start) · [Screenshots](#-screenshots) · [API Overview](#-api-overview)
 
