@@ -14,7 +14,7 @@
 
 **Status:** Actively maintained · **Topics:** `react` `nodejs` `mongodb` `jwt` `rest-api` `twilio` `fullstack`
 
-[Features](#-features) · [Tech Stack](#-tech-stack) · [Quick Start](#-quick-start) · [Screenshots](#-screenshots) · [API Overview](#-api-overview)
+[Features](#-features) · [Tech Stack](#-tech-stack) · [Quick Start](#-quick-start) · [API Overview](#-api-overview)
 
 </div>
 
@@ -122,18 +122,6 @@ npm start
 ```
 
 Frontend runs at **http://localhost:3000**
-
----
-
-## 📸 Screenshots
-
-> Add 2–3 screenshots after running the app. Save in `screenshots/` folder.
-
-```markdown
-![Home Screen](./screenshots/home.png)
-![SOS Alert Panel](./screenshots/sos-panel.png)
-![Provider Dashboard](./screenshots/dashboard.png)
-```
 
 ---
 
