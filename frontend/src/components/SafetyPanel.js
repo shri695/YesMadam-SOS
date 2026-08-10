@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { apiUrl } from '../api';
 
 export default function SafetyPanel({ userType, coords }) {
     const emergencyNumber = "6361648869";
@@ -22,13 +23,15 @@ export default function SafetyPanel({ userType, coords }) {
         const userEmail = localStorage.getItem("userEmail") || "test@gmail.com"; 
 
         try {
-            const response = await fetch("http://localhost:5000/api/send-sos", {
+            const response = await fetch(apiUrl("/api/send-sos"), {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
+                    location: { lat: coords[0], lon: coords[1] },
                     lat: coords[0],
                     long: coords[1],
                     userEmail: userEmail,
+                    customerEmail: userEmail,
                     contact: emergencyNumber,
                     type: triggerType // Tells backend if it was manual or timer
                 })

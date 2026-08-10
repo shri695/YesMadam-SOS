@@ -1,14 +1,14 @@
 const mongoose = require('mongoose');
 
-// Replace this with your actual MongoDB connection string
-const mongoURI = "mongodb://localhost:27017/safenight"; 
+const mongoURI = process.env.MONGODB_URI || "mongodb://localhost:27017/safenight";
 
 const mongoDB = async () => {
     try {
         await mongoose.connect(mongoURI);
         console.log("✅ MongoDB Connected Successfully");
     } catch (err) {
-        console.error("❌ MongoDB Connection Error:", err);
+        console.error("❌ MongoDB Connection Error:", err.message);
+        throw err;
     }
 };
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { apiUrl } from '../api';
 
 // Your local images are working perfectly!
 import maniImg from '../assets/mani.jpg';
@@ -33,7 +34,7 @@ export default function CustomerDashboard() {
                 if (!currentBookingId) return; 
 
                 try {
-                    const response = await fetch("http://localhost:5000/api/requests");
+                    const response = await fetch(apiUrl("/api/requests"));
                     const data = await response.json();
                     
                     const myBooking = data.find(req => req._id === currentBookingId);
@@ -59,7 +60,7 @@ export default function CustomerDashboard() {
         const userEmail = localStorage.getItem("userEmail") || "test@gmail.com";
         try {
             // Updated fetch to match your live port 5000
-            const response = await fetch("http://localhost:5000/api/book-sana", {
+            const response = await fetch(apiUrl("/api/book-sana"), {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email: userEmail, serviceName, location: { lat, lon } })

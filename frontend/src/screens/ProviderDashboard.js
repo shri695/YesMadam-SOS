@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
+import { apiUrl } from '../api';
 
 export default function ProviderDashboard() {
     const [pendingRequests, setPendingRequests] = useState([]);
@@ -7,7 +8,7 @@ export default function ProviderDashboard() {
 
     const fetchAllData = async () => {
         try {
-            const response = await fetch("http://localhost:5000/api/requests");
+            const response = await fetch(apiUrl("/api/requests"));
             const data = await response.json();
             // Separate lists to remove confusion
             setPendingRequests(data.filter(req => req.status === "Pending"));
@@ -22,7 +23,7 @@ export default function ProviderDashboard() {
     }, []);
 
     const updateStatus = async (id, newStatus) => {
-        const response = await fetch("http://localhost:5000/api/update-status", {
+        const response = await fetch(apiUrl("/api/update-status"), {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ id, status: newStatus })
@@ -32,7 +33,7 @@ export default function ProviderDashboard() {
 
     const triggerSOS = async (location, email) => {
         try {
-            const response = await fetch("http://localhost:5000/api/send-sos", {
+            const response = await fetch(apiUrl("/api/send-sos"), {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ location, customerEmail: email })

@@ -2,31 +2,41 @@ require('dotenv').config();
 
 const express = require('express');
 const app = express();
-const port = 5000;
-const mongoDB = require("./db"); // Ensure you have a db.js file that connects to MongoDB
+const port = process.env.PORT || 5000;
+const mongoDB = require("./db");
 const cors = require('cors');
+const path = require('path');
+const fs = require('fs');
 
-// 1. Initialize MongoDB Connection
-mongoDB();
-
-// 2. Middleware
-// CORS is essential to stop the "Backend is offline" error
-app.use(cors()); 
-
-// Allows the backend to understand JSON data sent from React
-app.use(express.json()); 
-
-// 3. Routes
-// This links all the booking, status update, and SOS logic we wrote
-app.use('/api', require("./routes/BookingData"));
-
-// 4. Default Route for testing
-app.get('/', (req, res) => {
-  res.send('YesMadam Backend is Running Perfectly!');
+// Mongo is optional — app falls back to local JSON file store
+mongoDB().catch((err) => {
+  console.warn("MongoDB unavailable, using file store:", err.message);
 });
 
-// 5. Start Server
+const allowedOrigin = process.env.FRONTEND_URL || "*";
+app.use(cors({
+  origin: allowedOrigin === "*" ? true : allowedOrigin,
+}));
+app.use(express.json());
+
+const routesDir = fs.existsSync(path.join(__dirname, "Routes"))
+  ? path.join(__dirname, "Routes")
+  : path.join(__dirname, "routes");
+
+app.use('/api', require(path.join(routesDir, "BookingData")));
+
+app.get('/', (req, res) => {
+  res.json({
+    ok: true,
+    message: 'Emergency Alert & Response System API is running',
+    endpoints: ['/api/book-sana', '/api/requests', '/api/update-status', '/api/send-sos'],
+  });
+});
+
+app.get('/health', (req, res) => {
+  res.json({ ok: true });
+});
+
 app.listen(port, () => {
-  console.log(`Server successfully listening on port ${port}`);
-  console.log("MongoDB Connected Successfully"); 
+  console.log(`Server listening on port ${port}`);
 });
